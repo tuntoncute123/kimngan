@@ -1,0 +1,389 @@
+/* ── Overlay ────────────────────────────────── */
+.oct20gift-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(30, 0, 60, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: oct20gift-fadeIn 0.4s ease;
+    padding: 1rem;
+}
+@keyframes oct20gift-fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ── Content card ───────────────────────────── */
+.oct20gift-content {
+    position: relative;
+    width: 90%;
+    max-width: 460px;
+    min-height: 500px;
+    background: linear-gradient(145deg, #1a0040, #2d0057, #1a0033);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    border-radius: 28px;
+    padding: 4rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(192, 132, 252, 0.2),
+        0 32px 64px rgba(147, 51, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    animation: oct20gift-scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes oct20gift-scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Stars background ───────────────────────── */
+.oct20gift-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.oct20gift-star {
+    position: absolute;
+    background: #f0abfc;
+    border-radius: 50%;
+    animation: oct20gift-twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes oct20gift-twinkle {
+    from { opacity: 0.1; transform: scale(0.8); }
+    to   { opacity: 0.7; transform: scale(1.3); }
+}
+
+/* ── Badge ──────────────────────────────────── */
+.oct20gift-badge {
+    position: absolute;
+    top: 1.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(192, 132, 252, 0.18);
+    border: 1px solid rgba(192, 132, 252, 0.4);
+    color: #e9d5ff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    backdrop-filter: blur(6px);
+    letter-spacing: 0.03em;
+}
+
+/* ── Close button ───────────────────────────── */
+.oct20gift-close {
+    position: absolute;
+    top: 0.85rem; right: 0.85rem;
+    background: rgba(168, 85, 247, 0.3);
+    color: #e9d5ff;
+    border: 1px solid rgba(192, 132, 252, 0.4);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 10;
+}
+.oct20gift-close:hover {
+    background: rgba(168, 85, 247, 0.55);
+    transform: rotate(90deg);
+}
+
+/* ═══════════════════════════════════════════════
+   GIFT BOX (before open)
+   ═══════════════════════════════════════════════ */
+.oct20gift-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    animation: oct20gift-float 2.5s ease-in-out infinite;
+    z-index: 5;
+}
+@keyframes oct20gift-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+}
+
+.oct20gift-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.oct20gift-box {
+    position: relative;
+    width: 130px;
+    height: 120px;
+}
+
+/* Nắp hộp */
+.oct20gift-lid {
+    position: absolute;
+    top: 0; left: -6px;
+    width: 142px;
+    height: 40px;
+    background: linear-gradient(135deg, #c084fc, #9333ea);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+    animation: oct20gift-lid-bounce 2.5s ease-in-out infinite;
+}
+@keyframes oct20gift-lid-bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-14px) rotate(-2deg); }
+}
+
+.oct20gift-ribbon-h {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 14px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    transform: translateY(-50%);
+    border-radius: 4px;
+}
+
+/* Thân hộp */
+.oct20gift-body {
+    position: absolute;
+    top: 38px; left: 0;
+    width: 130px;
+    height: 82px;
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45);
+    overflow: hidden;
+}
+.oct20gift-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+    border-radius: inherit;
+}
+
+.oct20gift-ribbon-v {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%; transform: translateX(-50%);
+    width: 14px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    border-radius: 4px;
+}
+
+/* Nơ */
+.oct20gift-bow {
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 32px;
+}
+.oct20gift-bow .bow-left,
+.oct20gift-bow .bow-right {
+    position: absolute;
+    width: 26px; height: 20px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    border-radius: 50%;
+    top: 4px;
+}
+.oct20gift-bow .bow-left  { left: 0;  transform: rotate(-25deg); }
+.oct20gift-bow .bow-right { right: 0; transform: rotate(25deg); }
+.oct20gift-bow .bow-center {
+    position: absolute;
+    width: 12px; height: 12px;
+    background: #fbbf24;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+}
+
+.oct20gift-shadow {
+    width: 100px; height: 14px;
+    background: radial-gradient(ellipse, rgba(147,51,234,0.4), transparent);
+    border-radius: 50%;
+    margin-top: 8px;
+}
+
+.oct20gift-click-hint {
+    color: #d8b4fe;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    animation: oct20gift-hint-pulse 1.5s ease-in-out infinite;
+}
+@keyframes oct20gift-hint-pulse {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   OPENED STATE
+   ═══════════════════════════════════════════════ */
+.oct20gift-opened {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: oct20gift-revealIn 0.5s ease;
+}
+@keyframes oct20gift-revealIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Confetti */
+.oct20gift-confetti-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.oct20gift-confetti {
+    position: absolute;
+    top: -6px;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    animation: oct20gift-confettiFall linear infinite;
+}
+@keyframes oct20gift-confettiFall {
+    0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(520px) rotate(720deg); opacity: 0; }
+}
+
+.oct20gift-display {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 5;
+}
+
+/* Sparkles */
+.oct20gift-sparkles { position: absolute; inset: 0; pointer-events: none; }
+.oct20gift-sparkle {
+    position: absolute;
+    font-size: 1rem;
+    animation: oct20gift-sparkleAnim 1.2s ease-in-out infinite alternate;
+}
+@keyframes oct20gift-sparkleAnim {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1.2); }
+}
+
+/* Gấu bông 8/3 */
+.teddy-bear {
+    width: 220px;
+    height: 290px;
+    animation: scaleInBounce 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards, floatBear 3.5s ease-in-out 1.4s infinite;
+    opacity: 0;
+    position: relative;
+}
+
+.teddy-bear::before {
+    content: '';
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 3.5s ease-in-out 0.5s infinite;
+    z-index: -1;
+}
+
+@keyframes floatBear {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+@keyframes scaleInBounce {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.1); opacity: 1; }
+    80%  { transform: scale(0.96); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popIn {
+    0%   { transform: scale(0); opacity: 0; }
+    80%  { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50%       { transform: translate(-50%, -50%) scale(1.25); opacity: 0.85; }
+}
+
+.teddy-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
+}
+
+.bear-part {
+    transform: scale(0);
+    transform-origin: center;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Message */
+.oct20gift-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(192, 132, 252, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.3);
+    border-radius: 16px;
+    padding: 0.75rem 1.5rem;
+}
+.oct20gift-msg-emoji { font-size: 1.5rem; }
+.oct20gift-msg-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0abfc;
+    text-align: center;
+}
+.oct20gift-msg-sub {
+    font-size: 0.9rem;
+    color: #d8b4fe;
+    text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+    .oct20gift-overlay {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(25, 0, 52, 0.94);
+    }
+}
+
+@media (max-width: 430px) {
+    .oct20gift-content {
+        width: 95%;
+        padding: 3.5rem 1.25rem 1.5rem;
+        border-radius: 20px;
+        min-height: 440px;
+    }
+    .teddy-bear { width: 180px; height: 240px; }
+    .oct20gift-box  { width: 110px; height: 100px; }
+    .oct20gift-lid  { width: 122px; }
+    .oct20gift-body { width: 110px; height: 68px; }
+}

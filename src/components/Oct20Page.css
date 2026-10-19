@@ -1,0 +1,456 @@
+/* ╔═══════════════════════════════════════════════╗
+   ║  Oct20Page.css — Theme tím / lavender       ║
+   ╚═══════════════════════════════════════════════╝ */
+
+/* ── Container ─────────────────────────────── */
+.oct20-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    overflow-y: auto;
+
+    /* Gradient tím lavender */
+    background-color: #2d0057;
+    background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(147, 51, 234, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(244, 114, 182, 0.35) 0%, transparent 50%),
+        linear-gradient(160deg, #1a0533 0%, #2d0057 40%, #0d0120 100%);
+    background-size: cover;
+}
+
+/* ── Falling Petals ─────────────────────────── */
+.oct20-petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Tạm dừng cánh hoa khi mở modal để giải phóng GPU cho nội dung chính */
+.oct20-petals-container.paused .oct20-petal {
+    animation-play-state: paused !important;
+    opacity: 0.12;
+    transition: opacity 0.3s ease;
+}
+
+.oct20-petal {
+    position: absolute;
+    top: -10vh;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.75;
+    filter: drop-shadow(0 2px 4px rgba(147, 51, 234, 0.3));
+}
+
+.oct20-petal.sway-left {
+    animation-name: oct20-fall-left;
+}
+.oct20-petal.sway-right {
+    animation-name: oct20-fall-right;
+}
+
+@keyframes oct20-fall-left {
+    0%   { transform: translateY(-10vh) rotate(0deg) translateX(0);   opacity: 0; }
+    5%   { opacity: 0.85; }
+    50%  { transform: translateY(50vh) rotate(-15deg) translateX(-25px); }
+    90%  { opacity: 0.85; }
+    100% { transform: translateY(110vh) rotate(0deg) translateX(0);   opacity: 0; }
+}
+@keyframes oct20-fall-right {
+    0%   { transform: translateY(-10vh) rotate(0deg) translateX(0);  opacity: 0; }
+    5%   { opacity: 0.85; }
+    50%  { transform: translateY(50vh) rotate(15deg) translateX(25px); }
+    90%  { opacity: 0.85; }
+    100% { transform: translateY(110vh) rotate(0deg) translateX(0);  opacity: 0; }
+}
+
+/* ── Shake animation ────────────────────────── */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25%       { transform: translateX(-10px); }
+    50%       { transform: translateX(10px); }
+    75%       { transform: translateX(-10px); }
+}
+.shake { animation: shake 0.4s ease-in-out; }
+
+/* ── Back button ────────────────────────────── */
+.oct20-back-home-btn {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(192, 132, 252, 0.18);
+    border: 1px solid rgba(192, 132, 252, 0.45);
+    color: #e9d5ff;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+.oct20-back-home-btn:hover {
+    background: rgba(192, 132, 252, 0.32);
+    transform: translateX(-3px);
+    color: #fff;
+}
+
+/* ── Password Card ──────────────────────────── */
+.oct20-password-card {
+    background: rgba(45, 0, 87, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 32px;
+    padding: 2.5rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    max-width: 760px;
+    width: 100%;
+    z-index: 20;
+    box-shadow:
+        0 0 0 1px rgba(192, 132, 252, 0.3),
+        0 20px 50px rgba(147, 51, 234, 0.25),
+        inset 0 0 40px rgba(147, 51, 234, 0.08);
+}
+
+.oct20-image-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oct20-image-side img {
+    border-radius: 20px;
+    border: 3px solid rgba(192, 132, 252, 0.6);
+    box-shadow: 0 8px 30px rgba(147, 51, 234, 0.3);
+    width: 100%;
+    max-width: 320px;
+    object-fit: cover;
+    object-position: center 62%;
+    max-height: 380px;
+    background: rgba(147, 51, 234, 0.1);
+}
+
+.oct20-pad-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* ── Flower icon & labels ───────────────────── */
+.oct20-flower-icon {
+    font-size: 3rem;
+    animation: oct20-pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.6));
+}
+@keyframes oct20-pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.15); }
+}
+
+.oct20-date-label {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f0abfc;
+    letter-spacing: 0.2em;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(240, 171, 252, 0.5);
+}
+
+.oct20-password-hint {
+    font-size: 0.9rem;
+    color: #d8b4fe;
+    font-style: italic;
+    margin: -0.5rem 0 0.25rem;
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* ── PIN Dots ───────────────────────────────── */
+.oct20-dots {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.oct20-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #a855f7;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+.oct20-dot.filled {
+    background: #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+}
+.oct20-dot.error {
+    border-color: #f87171;
+    background: #f87171;
+    box-shadow: 0 0 10px rgba(248, 113, 113, 0.7);
+}
+
+/* ── Keypad ─────────────────────────────────── */
+.oct20-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+    width: 100%;
+    max-width: 240px;
+}
+
+.oct20-key {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(192, 132, 252, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.3);
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #e9d5ff;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin: 0 auto;
+}
+.oct20-key:hover {
+    background: rgba(192, 132, 252, 0.25);
+    border-color: rgba(192, 132, 252, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(147, 51, 234, 0.2);
+}
+.oct20-key:active {
+    transform: translateY(1px) scale(0.95);
+    background: rgba(192, 132, 252, 0.35);
+    box-shadow: none;
+}
+.oct20-key.empty   { visibility: hidden; }
+.oct20-key.action-key {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #c084fc;
+}
+.oct20-key.action-key:hover {
+    background: rgba(192, 132, 252, 0.12);
+    transform: scale(1.05);
+}
+
+/* ── Greeting Banner ────────────────────────── */
+.oct20-greeting-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(192, 132, 252, 0.15);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    border-radius: 9999px;
+    padding: 0.75rem 1.75rem;
+    margin-bottom: 2rem;
+    z-index: 20;
+    backdrop-filter: blur(8px);
+    animation: fadeSlideDown 0.5s ease;
+}
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.oct20-greeting-emoji { font-size: 1.4rem; }
+.oct20-greeting-text {
+    font-size: 1rem;
+    color: #e9d5ff;
+    font-weight: 500;
+    text-align: center;
+}
+.oct20-greeting-text strong {
+    color: #f0abfc;
+    font-weight: 700;
+}
+
+/* ── Menu Grid ──────────────────────────────── */
+.oct20-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 620px;
+    width: 100%;
+    z-index: 20;
+}
+
+.oct20-menu-item {
+    background: rgba(45, 0, 87, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(192, 132, 252, 0.3);
+    border-radius: 24px;
+    padding: 2.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 8px 24px rgba(147, 51, 234, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.oct20-menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.5), transparent);
+}
+.oct20-menu-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(192, 132, 252, 0.6);
+    box-shadow:
+        0 16px 40px rgba(147, 51, 234, 0.28),
+        inset 0 0 0 1px rgba(192, 132, 252, 0.2);
+    background: rgba(60, 0, 110, 0.7);
+}
+.oct20-menu-item:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+.oct20-icon {
+    font-size: 3.2rem;
+    filter: drop-shadow(0 4px 8px rgba(192, 132, 252, 0.35));
+    transition: transform 0.3s ease;
+}
+.oct20-menu-item:hover .oct20-icon {
+    transform: scale(1.12) rotate(5deg);
+}
+
+.oct20-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f3e8ff;
+    text-align: center;
+    margin: 0;
+}
+
+.oct20-sub {
+    font-size: 0.78rem;
+    color: #c084fc;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.oct20-menu-item.highlight-card {
+    border-color: rgba(234, 179, 8, 0.45);
+    background: linear-gradient(145deg, rgba(45, 0, 87, 0.65) 0%, rgba(24, 24, 27, 0.75) 100%);
+    box-shadow:
+        0 8px 24px rgba(234, 179, 8, 0.15),
+        inset 0 0 0 1px rgba(234, 179, 8, 0.2);
+}
+
+.oct20-menu-item.highlight-card:hover {
+    border-color: rgba(234, 179, 8, 0.8);
+    box-shadow:
+        0 16px 40px rgba(234, 179, 8, 0.25),
+        inset 0 0 0 1px rgba(234, 179, 8, 0.4);
+}
+
+.oct20-menu-item.full-width-card {
+    grid-column: span 2;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+}
+.oct20-menu-item.full-width-card .oct20-card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+.oct20-menu-item.full-width-card .oct20-label,
+.oct20-menu-item.full-width-card .oct20-sub {
+    text-align: left;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+
+/* ── Tablet ─────────────────────────────────── */
+@media (max-width: 768px) {
+    .oct20-password-card {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.75rem;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(35, 2, 70, 0.96);
+    }
+    .oct20-image-side img { max-width: 200px; }
+    .oct20-keypad { gap: 0.8rem; }
+    .oct20-key { width: 56px; height: 56px; font-size: 1.25rem; }
+    .oct20-menu-grid { gap: 1.1rem; }
+    .oct20-menu-item { padding: 2rem 0.75rem; }
+    .oct20-icon { font-size: 2.6rem; }
+    .oct20-label { font-size: 1.1rem; }
+}
+
+/* ── Mobile ─────────────────────────────────── */
+@media (max-width: 430px) {
+    .oct20-container { padding: 1rem; }
+    .oct20-password-card {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.5rem;
+        max-width: 100%;
+        border-radius: 24px;
+    }
+    .oct20-image-side img { max-width: 100%; max-height: 180px; }
+    .oct20-pad-side { gap: 0.9rem; }
+    .oct20-flower-icon { font-size: 2.4rem; }
+    .oct20-date-label { font-size: 1.6rem; }
+    .oct20-password-hint { font-size: 0.82rem; }
+    .oct20-keypad { gap: 0.6rem; max-width: 210px; }
+    .oct20-key { width: 50px; height: 50px; font-size: 1.2rem; }
+    .oct20-menu-grid {
+        gap: 0.9rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .oct20-menu-item { padding: 1.4rem 0.4rem; border-radius: 18px; gap: 0.6rem; }
+    .oct20-icon { font-size: 2.2rem; }
+    .oct20-label { font-size: 0.92rem; }
+    .oct20-sub { font-size: 0.68rem; }
+    .oct20-greeting-banner {
+        padding: 0.6rem 1.2rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .oct20-greeting-text { font-size: 0.88rem; }
+    .oct20-back-home-btn {
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.82rem;
+    }
+}

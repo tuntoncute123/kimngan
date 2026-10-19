@@ -1,0 +1,670 @@
+/* ==============================================================
+   Oct20SlayAlert.css — Báo động đỏ visual hài hước 20/10
+   ============================================================== */
+
+.slay-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(13, 1, 32, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1.25rem;
+    overflow-y: auto;
+    animation: slayFadeIn 0.35s ease;
+}
+
+@keyframes slayFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.slay-alert-card {
+    background: linear-gradient(145deg, rgba(38, 5, 60, 0.95) 0%, rgba(18, 2, 33, 0.98) 100%);
+    border: 1.5px solid rgba(244, 63, 94, 0.45);
+    box-shadow:
+        0 0 35px rgba(244, 63, 94, 0.28),
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        inset 0 0 25px rgba(244, 63, 94, 0.1);
+    border-radius: 28px;
+    max-width: 580px;
+    width: 100%;
+    padding: 2.2rem;
+    position: relative;
+    color: #f1f5f9;
+    font-family: inherit;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Close button */
+.slay-alert-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(244, 63, 94, 0.15);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    color: #fda4af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.slay-alert-close:hover {
+    background: rgba(244, 63, 94, 0.4);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Siren Header */
+.slay-alert-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.slay-siren-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.slay-siren-icon {
+    font-size: 1.4rem;
+    animation: sirenBlink 0.8s infinite alternate;
+}
+
+.slay-siren-icon.right {
+    animation-delay: 0.4s;
+}
+
+@keyframes sirenBlink {
+    0% { transform: scale(1) rotate(-10deg); opacity: 0.7; }
+    100% { transform: scale(1.25) rotate(10deg); opacity: 1; filter: drop-shadow(0 0 8px #f43f5e); }
+}
+
+.slay-badge-blink {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #ffe4e6;
+    background: linear-gradient(90deg, #e11d48, #9333ea);
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.6);
+    text-transform: uppercase;
+}
+
+.slay-alert-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fecdd3;
+    letter-spacing: 0.03em;
+    margin: 0.25rem 0 0.5rem 0;
+    text-shadow: 0 0 16px rgba(244, 63, 94, 0.6);
+}
+
+.slay-alert-subtitle {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* Dossier summary */
+.slay-dossier {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(244, 63, 94, 0.25);
+    border-radius: 18px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.slay-dossier-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
+}
+
+.slay-dossier-label {
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+}
+
+.slay-dossier-value {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+.slay-dossier-value.highlight {
+    color: #f472b6;
+    font-size: 1rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+}
+
+.slay-dossier-value.warning {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+/* Crimes List */
+.slay-crimes-box {
+    background: rgba(147, 51, 234, 0.1);
+    border: 1px dashed rgba(192, 132, 252, 0.35);
+    border-radius: 18px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1.4rem;
+}
+
+.slay-crimes-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #d8b4fe;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.slay-crimes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.slay-crimes-list li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #e2e8f0;
+}
+
+.crime-bullet {
+    color: #f43f5e;
+    font-weight: 800;
+}
+
+.slay-crimes-list strong {
+    color: #fda4af;
+}
+
+/* Verdict box */
+.slay-verdict-box {
+    position: relative;
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    border-radius: 18px;
+    padding: 1.15rem 1.35rem 1.6rem 1.35rem;
+    margin-bottom: 1.6rem;
+    overflow: visible;
+    transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.slay-verdict-box.verdict-shaking {
+    animation: boxSlamRumble 0.26s ease-out;
+}
+
+@keyframes boxSlamRumble {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-3px, 2px) rotate(-0.5deg); }
+    40% { transform: translate(3px, -2px) rotate(0.5deg); }
+    60% { transform: translate(-2px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0, 0); }
+}
+
+.slay-verdict-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px dashed rgba(244, 63, 94, 0.25);
+}
+
+.slay-verdict-badge-label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #f43f5e;
+    text-transform: uppercase;
+}
+
+.slay-verdict-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.slay-verdict-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #fce7f3;
+    margin: 0;
+}
+
+.slay-verdict-text strong {
+    color: #f472b6;
+    font-weight: 700;
+}
+
+/* 3D Stamp System */
+.slay-stamp-stage {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    width: 148px;
+    height: 68px;
+    perspective: 900px;
+    perspective-origin: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 12;
+}
+
+.slay-stamp-stage.stamped {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slay-stamp-shockwave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    border-radius: 50%;
+    border: 2.5px solid #ef4444;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.slay-stamp-stage.stamped .slay-stamp-shockwave {
+    animation: shockwavePulse 0.65s 0.34s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes shockwavePulse {
+    0% {
+        opacity: 0.95;
+        transform: scale(0.6);
+        box-shadow: 0 0 15px #ef4444, inset 0 0 10px #ef4444;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3.4);
+        box-shadow: 0 0 35px transparent, inset 0 0 20px transparent;
+    }
+}
+
+.slay-stamper-3d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 50px;
+    margin-left: -60px;
+    margin-top: -25px;
+    transform-style: preserve-3d;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 10;
+}
+
+.slay-stamp-stage.stamped .slay-stamper-3d {
+    animation: stamperSlam3D 1.1s cubic-bezier(0.18, 0.85, 0.25, 1) forwards;
+}
+
+@keyframes stamperSlam3D {
+    0% {
+        opacity: 0;
+        transform: perspective(900px) translate3d(0, -110px, 460px) rotateX(40deg) rotateY(-18deg) rotateZ(-24deg) scale(2.6);
+        filter: blur(4px) drop-shadow(0 40px 30px rgba(0, 0, 0, 0.7));
+    }
+    18% {
+        opacity: 1;
+        filter: blur(1.5px) drop-shadow(0 25px 20px rgba(0, 0, 0, 0.6));
+    }
+    34% {
+        transform: perspective(900px) translate3d(0, 0, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-11deg) scale(1);
+        filter: blur(0px) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+        opacity: 1;
+    }
+    45% {
+        transform: perspective(900px) translate3d(0, -10px, 30px) rotateX(5deg) rotateY(-2deg) rotateZ(-11deg) scale(1.05);
+        opacity: 1;
+    }
+    60% {
+        transform: perspective(900px) translate3d(0, 0, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-11deg) scale(1);
+        opacity: 1;
+    }
+    76% {
+        transform: perspective(900px) translate3d(15px, -65px, 200px) rotateX(24deg) rotateY(8deg) rotateZ(-15deg) scale(1.4);
+        opacity: 0.6;
+    }
+    100% {
+        transform: perspective(900px) translate3d(25px, -130px, 380px) rotateX(32deg) scale(1.8);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.stamper-handle {
+    width: 22px;
+    height: 42px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #78350f 0%, #451a03 50%, #9a3412 100%);
+    border-radius: 11px 11px 4px 4px;
+    box-shadow:
+        inset 2px 2px 4px rgba(255, 255, 255, 0.45),
+        inset -2px -2px 4px rgba(0, 0, 0, 0.65),
+        0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    top: 6px;
+    z-index: 2;
+}
+
+.stamper-collar {
+    width: 34px;
+    height: 8px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, #d97706 0%, #fef08a 50%, #b45309 100%);
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+.stamper-body {
+    width: 120px;
+    height: 36px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #1e1b4b 0%, #0f172a 100%);
+    border: 2px solid #f59e0b;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.8),
+        inset 0 0 10px rgba(245, 158, 11, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.stamper-face-text {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #fef08a;
+    text-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+}
+
+.slay-ink-imprint {
+    width: 148px;
+    height: 68px;
+    border: 3px double #ef4444;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-11deg) scale(0.6);
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(239, 68, 68, 0.3),
+        inset 0 0 12px rgba(239, 68, 68, 0.2),
+        0 4px 15px rgba(239, 68, 68, 0.35);
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    user-select: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 4;
+}
+
+.slay-stamp-stage.stamped .slay-ink-imprint {
+    animation: inkImprintReveal 0.45s 0.34s cubic-bezier(0.17, 0.89, 0.32, 1.28) forwards;
+    pointer-events: auto;
+}
+
+@keyframes inkImprintReveal {
+    0% {
+        opacity: 0;
+        transform: rotate(-11deg) scale(1.4);
+        filter: drop-shadow(0 0 25px #ef4444);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(-11deg) scale(0.95);
+        filter: drop-shadow(0 0 15px #ef4444);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(-11deg) scale(1);
+        filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
+    }
+}
+
+.slay-ink-imprint:hover {
+    transform: rotate(-11deg) scale(1.05);
+    box-shadow:
+        0 0 0 1.5px rgba(239, 68, 68, 0.5),
+        inset 0 0 16px rgba(239, 68, 68, 0.3),
+        0 6px 20px rgba(239, 68, 68, 0.55);
+}
+
+.slay-ink-imprint:active {
+    transform: rotate(-11deg) scale(0.97);
+}
+
+.ink-inner-border {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border: 1px dashed rgba(239, 68, 68, 0.6);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px;
+    box-sizing: border-box;
+}
+
+.ink-stamp-header {
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    line-height: 1;
+}
+
+.ink-stamp-title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin: 2px 0;
+    color: #ff4d6d;
+    text-shadow: 
+        0 0 10px rgba(255, 77, 109, 0.8),
+        0 0 20px rgba(239, 68, 68, 0.5);
+    font-family: inherit;
+}
+
+.ink-stamp-footer {
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    opacity: 0.85;
+    line-height: 1;
+}
+
+/* CTA */
+.slay-alert-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.slay-accept-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #e11d48 0%, #a855f7 100%);
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.95rem 1.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slay-accept-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(225, 29, 72, 0.55);
+    filter: brightness(1.1);
+}
+
+.slay-accept-btn:active {
+    transform: translateY(1px);
+}
+
+.btn-sparkle {
+    font-size: 1.15rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slay-alert-overlay {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(13, 1, 32, 0.95);
+    }
+}
+
+@media (max-width: 480px) {
+    .slay-alert-card {
+        padding: 1.6rem 1.2rem;
+        border-radius: 22px;
+    }
+
+    .slay-alert-title {
+        font-size: 1.25rem;
+    }
+
+    .slay-alert-subtitle {
+        font-size: 0.82rem;
+    }
+
+    .slay-dossier {
+        padding: 0.8rem 1rem;
+    }
+
+    .slay-dossier-row {
+        font-size: 0.82rem;
+    }
+
+    .slay-crimes-list li {
+        font-size: 0.82rem;
+    }
+
+    .slay-verdict-box {
+        padding: 1rem 1rem 3.6rem 1rem;
+    }
+
+    .slay-stamp-stage {
+        right: 8px;
+        bottom: 8px;
+        width: 126px;
+        height: 56px;
+    }
+
+    .slay-ink-imprint {
+        width: 126px;
+        height: 56px;
+    }
+
+    .ink-stamp-header {
+        font-size: 0.46rem;
+    }
+
+    .ink-stamp-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.12em;
+    }
+
+    .ink-stamp-footer {
+        font-size: 0.42rem;
+    }
+
+    .stamper-body {
+        width: 104px;
+        height: 30px;
+    }
+
+    .stamper-handle {
+        width: 18px;
+        height: 34px;
+    }
+
+    .stamper-collar {
+        width: 28px;
+        height: 6px;
+    }
+
+    .stamper-face-text {
+        font-size: 0.62rem;
+    }
+
+    .slay-verdict-text {
+        font-size: 0.85rem;
+    }
+
+    .slay-accept-btn {
+        font-size: 0.9rem;
+        padding: 0.85rem 1.2rem;
+    }
+}
