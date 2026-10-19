@@ -39,10 +39,26 @@ const Oct20Letter = ({ onClose, userName = 'Lê Thị Kim Ngân' }) => {
         return () => clearInterval(interval);
     }, [totalLength]);
 
-    // Tự động cuộn theo chữ mới trên thiết bị di động
+    const page2Ref = useRef(null);
+    const hasScrolledToPage2 = useRef(false);
+
+    // Khởi tạo vị trí cuộn ở đầu thư khi mở modal
     useEffect(() => {
-        if (scrollContainerRef.current && window.innerWidth <= 768) {
-            scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTop = 0;
+        }
+    }, []);
+
+    // Tự động cuộn mượt xuống Trang 2 khi Trang 1 đã gõ xong trên thiết bị di động
+    useEffect(() => {
+        if (displayedCount >= LETTER_PAGE_1.length && !hasScrolledToPage2.current) {
+            hasScrolledToPage2.current = true;
+            if (page2Ref.current && window.innerWidth <= 768) {
+                page2Ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        if (displayedCount === 0) {
+            hasScrolledToPage2.current = false;
         }
     }, [displayedCount]);
 
@@ -129,7 +145,7 @@ const Oct20Letter = ({ onClose, userName = 'Lê Thị Kim Ngân' }) => {
                     </div>
 
                     {/* ══ TRANG 2 (BÊN PHẢI TRÊN PC) ══ */}
-                    <div className="oct20-book-page oct20-page-right">
+                    <div className="oct20-book-page oct20-page-right" ref={page2Ref}>
                         {/* Header trang 2 */}
                         <div className="oct20-letter-header page2-header">
                             <span className="oct20-letter-badge">💜 LỜI CHÚC TRI ÂN 💜</span>
